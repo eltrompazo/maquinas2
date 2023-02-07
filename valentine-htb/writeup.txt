@@ -1,0 +1,4 @@
+permismos chmod 600 idrsa hay que darselo a todo
+
+
+heartbleedbelievethehype

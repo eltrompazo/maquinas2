@@ -1,0 +1,35 @@
+{
+    "main": "bin/magescan",
+    "output": "magescan.phar",
+    "chmod": "0755",
+    "compression": "GZ",
+    "extract": false,
+    "files": [
+        "vendor/autoload.php"
+    ],
+    "directories": [
+        "src"
+    ],
+    "finder": [
+        {
+            "name": "*.php",
+            "exclude": ["test", "Test", "Tests", "tests"],
+            "in": [
+                "vendor/composer",
+                "vendor/guzzlehttp",
+                "vendor/psr/http-message",
+                "vendor/symfony"
+            ]
+        },
+        {
+            "name": [
+                "*.php",
+                "*.json"
+            ],
+            "in": [
+                "vendor/steverobbins"
+            ]
+        }
+    ],
+    "stub": true
+}
