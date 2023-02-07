@@ -1,0 +1,63 @@
+maquina nibbles -------------------------------- htb 
+
+aprendizaje 
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.2 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 c4:f8:ad:e8:f8:04:77:de:cf:15:0d:63:0a:18:7e:49 (RSA)
+|   256 22:8f:b1:97:bf:0f:17:08:fc:7e:2c:8f:e9:77:3a:48 (ECDSA)
+|_  256 e6:ac:27:a3:b5:a9:f1:12:3c:34:a5:5d:5b:eb:3d:e9 (ED25519)
+80/tcp open  http    Apache httpd 2.4.18 ((Ubuntu))
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Site doesn't have a title (text/html).
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+-----------------------------------------------------
+
+
+esta maquina tiene puerto 80 abierto y entramos a la pagina, al no mostrar mucha cosa y fuzzear
+y tampoco ver gran cosa vemos el codigo fuente que nos muestra un directorio al que entrar
+
+nibbleblog 
+
+hemos mirado por encima en internet que es nibblesblod y hemos vuelto a fuzear ese directorio 
+nos ha arrojado una serie de directorios donde habia varios interesantes como /admin /content /plugins
+
+hemos entrado a content/ y hemos encontrado un nombre de usuario "admin" 
+
+hemos mirado por internet un poco la contraseña por defecto de nibblesblog y nos ha arrojado 
+
+que es 
+
+admin:nibbles
+
+hemos entrado y mirando por foros hemos encontrado que podemos subir una shell de php con el pluging 
+my image pero solo en la version 4.0.2 
+
+en el readmi que hemos encontrado tambien fuzeando nos ha dado la version.
+
+hemos subido una shell de pentestmonkeys de webshell. y nos hemos puesto en escucha
+
+los links son estos 
+
+http://10.10.10.75/nibbleblog/content/private/plugins/my_image/image.php
+
+tenemos que subir la revershell con el nombre "imagen.php" porque va por defecto asi y si no no la coge
+
+hemos entrado a la maquina y hemos visto que con sudo -l tenemos acceso a un script de monitor.sh que 
+tiene permisos de root. 
+
+hemos cambiado el interior del script con 
+
+chmod u+s /bin/bash 
+
+y lo hemos ejecutad como root 
+
+sudo -u root monitor.sh 
+
+y hemos puesto seguidamente 
+
+bash -p 
+
+y listo somos root! 

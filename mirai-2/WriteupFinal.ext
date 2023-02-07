@@ -1,0 +1,48 @@
+maquina mirai----------------------------htb
+
+aprendizaje
+
+Pi-Hole
+Penetration Tester Level 1
+Network
+Forensics
+Vulnerability Assessment
+Authorization
+Host
+Authentication
+IoT
+SUDO Exploitation
+Information Disclosure
+Default Credentials
+
+RAPSBERRY 
+
+------------------------------------------------
+
+esta maquina ha sido bastante facil aunque es la primera que veo con el sistema rapsberry. 
+
+a ver las vulneravilidades de la maquina practicamente era imposible encontrar una fuera adecuada
+
+hemos fuzzeado y hemos entrado a http://10.10.10.48/admin
+
+y hemos visto que es pi-hole en google ya que eso nos mostraba la pagina, y era un sistema rapsberry
+
+hemos buscado credenciales por defecto en google 
+
+user:pi
+pass:rapsberry 
+
+hemos entrado por ssh ya que el admin de la pagina no nos hacia mucho caso y hemos podido entrar 
+
+viendo binarios hemos visto que tenemos el "su" como ejecucion.
+
+con "sudo su" nos hemos convertido en root pero no hemos podido ver la flag de del
+directorio /root/root.txt porque estaba en un pen y el que habia manejado el pen habia borrado el interior. 
+
+con este comando hemos visto los posibles archivos que haya podido tener dentro 
+
+sudo strings /dev/sdb
+
+y listo ahi estaba la flag.. 
+
+

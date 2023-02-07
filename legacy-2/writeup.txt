@@ -1,0 +1,44 @@
+maquina legacy --------------------------- windows 
+
+aprendizaje 
+
+SAMBA
+Penetration Tester Level 2
+Network
+Vulnerability Assessment
+Protocols
+Outdated Software
+Security Tools
+Metasploit
+Remote Code Execution
+
+------------------------------------
+
+
+esta maquina para hacerla lo mas sencillo es ver si es vulnerable al EternalBlue, 
+
+https://github.com/worawit/MS17-010
+
+para poder ver si es vulnerable necesitas el paquete de librerias de impackets en el python2 que se consigue haciendo el comando
+
+pip2 install impackets. 
+
+una vez lo tngas todo solo tienes que ejecutar el checker.py y si algunos de los pipes te da OK es vulnerable. 
+
+hemos usado le zzz_exploit.py para poder ver si crea un archivo en la maquina que se termina llamando pwnd.txt
+pero no interesa que nos hagaun archivo si no usar las lineas que hay mas abajo en el exploit para poder ejecutar 
+comando dentro de la maquina
+
+con tcpdump hemos visto si nos llegan pings
+
+tcpdump -i tun0 icmp -n 
+
+con eso podemos ver que nos manda un ping si modificamos el exploit
+
+una vez tenemos eso tenemos que hacernos un recurso compartido en la carpeta donde tenemos el nc.exe 
+
+smbserver.py (nombrequequieras) $(pwd) < ---- para que se comparta en donde estas actualmente 
+
+una vez tienes el recurso solo es mandar el exploit y ponerte en escucha con nc y el puerto que has puesto. 
+
+

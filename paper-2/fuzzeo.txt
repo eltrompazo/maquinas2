@@ -1,0 +1,10 @@
+http://10.10.11.143/cgi-bin/
+http://10.10.11.143/manual/
+
+
+/cgi-bin/             (Status: 403) [Size: 199]
+/icons/               (Status: 200) [Size: 74416]
+/wp-content/          (Status: 200) [Size: 0]    
+/manual/              (Status: 200) [Size: 9164] 
+/wp-includes/         (Status: 403) [Size: 199]  
+/wp-admin/            (Status: 302) [Size: 1] [--> http://office.paper/wp-login.php?redirect_to=http%3A%2F%2Foffice.paper%2Fwp-admin%2F&reauth=1]

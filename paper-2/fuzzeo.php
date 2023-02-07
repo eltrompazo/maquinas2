@@ -1,0 +1,25 @@
+301      GET        7l       20w      239c http://office.paper/wp-content => http://office.paper/wp-content/
+200      GET      235l     1209w        0c http://office.paper/
+301      GET        7l       20w      235c http://office.paper/manual => http://office.paper/manual/
+301      GET        7l       20w      240c http://office.paper/wp-includes => http://office.paper/wp-includes/
+301      GET        7l       20w      246c http://office.paper/wp-content/themes => http://office.paper/wp-content/themes/
+301      GET        7l       20w      242c http://office.paper/manual/images => http://office.paper/manual/images/
+301      GET        7l       20w      247c http://office.paper/wp-content/uploads => http://office.paper/wp-content/uploads/
+301      GET        7l       20w      239c http://office.paper/manual/faq => http://office.paper/manual/faq/
+301      GET        7l       20w      240c http://office.paper/manual/misc => http://office.paper/manual/misc/
+301      GET        7l       20w      244c http://office.paper/manual/programs => http://office.paper/manual/programs/
+301      GET        7l       20w      247c http://office.paper/wp-content/plugins => http://office.paper/wp-content/plugins/
+301      GET        7l       20w      241c http://office.paper/manual/howto => http://office.paper/manual/howto/
+301      GET        7l       20w      247c http://office.paper/wp-includes/images => http://office.paper/wp-includes/images/
+301      GET        7l       20w      245c http://office.paper/manual/developer => http://office.paper/manual/developer/
+301      GET        7l       20w      247c http://office.paper/wp-content/upgrade => http://office.paper/wp-content/upgrade/
+301      GET        7l       20w      244c http://office.paper/wp-includes/css => http://office.paper/wp-includes/css/
+301      GET        7l       20w      241c http://office.paper/manual/style => http://office.paper/manual/style/
+301      GET        7l       20w      243c http://office.paper/wp-includes/js => http://office.paper/wp-includes/js/
+301      GET        7l       20w      247c http://office.paper/wp-includes/blocks => http://office.paper/wp-includes/blocks/
+301      GET        7l       20w      244c http://office.paper/manual/platform => http://office.paper/manual/platform/
+301      GET        7l       20w      246c http://office.paper/manual/style/lang => http://office.paper/manual/style/lang/
+301      GET        7l       20w      253c http://office.paper/wp-includes/images/media => http://office.paper/wp-includes/images/media/
+301      GET        7l       20w      239c http://office.paper/manual/mod => http://office.paper/manual/mod/
+301      GET        7l       20w      253c http://office.paper/wp-includes/certificates => http://office.paper/wp-includes/certificates/
+301      GET        7l       20w      251c http://office.paper/wp-includes/js/tinymce => http://office.paper/wp-includes/js/tinymce/
