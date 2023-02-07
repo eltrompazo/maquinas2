@@ -1,0 +1,12 @@
+2022/12/11 16:36:39 Starting gobuster in directory enumeration mode
+===============================================================
+/scripts/             (Status: 200) [Size: 3075]
+/sites/               (Status: 200) [Size: 1309]
+/includes/            (Status: 200) [Size: 10673]
+/profiles/            (Status: 200) [Size: 1313] 
+/misc/                (Status: 200) [Size: 16187]
+/icons/               (Status: 200) [Size: 74409]
+/cgi-bin/             (Status: 403) [Size: 210]  
+/modules/             (Status: 200) [Size: 9084] 
+/themes/              (Status: 200) [Size: 1725] 
+

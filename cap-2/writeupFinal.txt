@@ -1,0 +1,56 @@
+maquina cap-------------------------linux 
+
+aprendizajes 
+
+Python
+Penetration Tester Level 1
+Web
+Forensics
+Vulnerability Assessment
+Log Analysis
+Common Security Controls
+Wireshark
+Packet Capture Analysis
+SUID Exploitation
+Clear Text Credentials
+File System Configuration
+Insecure Direct Object Reference (IDOR)
+
+-----------------------------------------------
+
+esta maquina hemos visto en nmap que tiene ftp y puerto 80 
+
+hemos entrado a la pagina y nada mas entrar nos ha dado un nombre de usuario 
+
+natham 
+
+podemos ver en una de las pestañas explorando un poco que tiene un dashboard conde puedes 
+descargarte los archivos .pcap que son archivos de logs de las paginas, y viendo la url
+vemos que pone un 1, hemos cambiado a 0 y hemos descargado otro archivo con mucha mas 
+informacion 
+
+con la herramienta tshark 
+
+tshark -r 0.pcap 
+
+podemos ver que nos arroja una pass y un nombre de usuario, hemos entrado por ssh con el nombre 
+
+nathan y la contraseña Buck3tH4TF0RM3!
+
+ssh nathan@10.10.10.245 
+
+nada mas entrar tienes la primera flag 
+
+luego hemos lanzado el comando de capavilitis 
+
+getcap / -r 2>/dev/null 
+
+nos ha arrojado que tiene python3.8 activo con setuid
+
+lo hemos ejecutado y hemos puesto esto 
+
+import os 
+os.setuid(0)
+os.system("/bin/bash")
+
+y hemos entrado directamente con una consola como root.

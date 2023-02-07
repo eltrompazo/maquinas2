@@ -1,0 +1,41 @@
+maquina Knife --------------------- linux 
+
+aprendizaje
+
+PHP
+Apache
+Penetration Tester Level 1
+Web
+Vulnerability Assessment
+Common Applications
+Outdated Software
+Backdoor
+Reconnaissance
+SUDO Exploitation
+Misconfiguration
+
+---------------------------------------------
+
+esta maquina es demasiado facil, me da hasta cosa escribir un writeup
+
+nada solo hemos entrado la pagina ya que tenemos el puerto 80 abierto 
+no nos muestra nada interesante pero el wappalizer nos ha soltado 
+que tiene un version de php 8.1.0 
+
+he buscado en searchsploit un exploit para esa version y he acertado
+a la primera ya que habia una en concreto que si que coincidia con esa.
+
+php/webapps/49933.py
+
+solo es lanzar el exploit, te pide la url completa y listo. ya estas dentro
+
+el problema de ese exploit es que no tienes una consola completamente interactiva 
+por lo que tendras que lanzarte una reverse shell con bash a otra consola tuya
+
+una vez ahi haces un tratamiento de consola y buscas la manera de escalar
+
+ha sido con sudo -l 
+
+tienes una app que se llama "knife" 
+
+buscas en GTFObins y listo... ahi tienes el root

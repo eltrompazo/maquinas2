@@ -1,0 +1,62 @@
+maquina blocky------------------------- linux htb
+
+aprendizaje 
+
+Penetration Tester Level 2
+Web
+Vulnerability Assessment
+Common Applications
+Outdated Software
+Authentication
+Wordpress
+JD-GUI
+Java
+Web Site Structure Discovery
+Password Reuse
+Decompilation
+Misconfiguration
+Hard-coded Credentials
+
+------------------------------------------
+
+esta maquina cuando entramos nos obliga a poner el dns en el archivo /etc/hosts le ponemos
+el dominio que nos redirecciona 
+
+http://blocky.htb/ 
+
+y vemos que es un servidor de worprees segun wapallizer... 
+lo que hemos hecho es un fuzzeo y un wpscan para ver nombres de usuario y tambien ver directorios
+
+cuando hemos hecho un wpscan hemos visto un par de nombres de usuario 
+
+"notch" 
+
+
+vemos que nos lleva a varios sitios pero el interesate es el de plugins/ y cuando entramos nos deja 
+descargar archivos .jar
+
+para poder ver los archivos jar lo hemos descomprimido con el mismo parrot con "open"
+
+hay uno que tiene mucha mierda que por mucho que investigamos no encontramos nada, pero hay 
+uno que uno que tiene un archivo sospechosamente raro por el nombre 
+
+myfristplugin.conf
+
+cuando lo vemos vemos que tiene varias credenciales, 
+
+root	
+8YsqfCTnvxAUeduzjNSXe22	
+
+hemos probado meternos en uno de los directorios que nos ha dado el fuzzeo
+
+phpmyadmin/ y nos ha funcionado con root y la contraseña, 
+
+pero hemos probado por ssh y el root y la contraseña no nos ha funcionado pero si que 
+nos ha funcionado con notch
+
+hemos entrado la maquina y tiene la misma contraseña de usuario... y vemos que tiene todos 
+los permisos 
+
+solo hemos puesto sudo su y la contraseña que nos ha proporcionado el archivo y listo 
+
+somos root.
