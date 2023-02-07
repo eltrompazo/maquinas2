@@ -1,0 +1,7 @@
+PORT   STATE SERVICE VERSION
+80/tcp open  http    HttpFileServer httpd 2.3
+|_http-title: HFS /
+|_http-server-header: HFS 2.3
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+

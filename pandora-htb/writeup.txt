@@ -1,0 +1,47 @@
+maquina pandora-------------------linux 
+
+aprendizaje 
+
+Web
+Network
+Vulnerability Assessment
+Injection
+Protocols
+Outdated Software
+Apache
+SNMP
+snmpwalk
+Penetration Tester Level 1
+Reconnaissance
+Tunneling
+SQL Injection
+Remote Code Execution
+Clear Text Credentials
+Path Hijacking
+
+--------------------------------------
+
+
+esta maquina lo primero que tiene que hacer es escanear con nmap los puertos UDP donde tenemos el 161 abierto 
+con el servidio SNMP con la herramienta SNMP-walk podemos ver que corre por detras 
+
+
+snmpbulkwalk -c public -v 2c 10.10.11.136 > resultado.txt
+
+
+lo que hemos hecho es mandar los resultados que nos ha arrojado a un documento que tenemos guardado
+
+hemos grepeado por el nombre de ususario que nos ha salido al principio y nos ha arrojado una contraseña 
+ya uqe la pagina no nos arrojaba mucha informacion sobre el sistema ..
+
+
+iso.3.6.1.2.1.1.4.0 = STRING: "Daniel"
+iso.3.6.1.2.1.25.4.2.1.5.845 = STRING: "-c sleep 30; /bin/bash -c '/usr/bin/host_check -u daniel -p HotelBabylon23'"
+iso.3.6.1.2.1.25.4.2.1.5.1135 = STRING: "-u daniel -p HotelBabylon23"
+
+
+a traves de ahi sabemos unas credenciales y un usuario que nos
+hemos metido por ssh y solo nos ha bastando con enumerar los binarios
+y hacer un servidor python con el PWnKIT para poder escalar el privilegio
+
+aunque la maquina no iba por ahi era la manera mas efectiva de haerlo

