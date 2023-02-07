@@ -1,0 +1,17 @@
+archivos de dentro del zip
+se ven con 7z l 
+
+
+.bash_logout
+.bashrc
+.profile
+.cache
+.cache/motd.le
+
+contraseñas arrojadas por bkcrack
+
+
+7b549874 ebc25ec5 7e465e18
+
+
+bkcrack -C uploaded-file-3422.zip  -k 7b549874 ebc25ec5 7e465e18 -U carapija2.zip 1234
